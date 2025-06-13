@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steam Manager</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        /* Inject inline CSS for now to ensure it loads */
+        /* This is just basic styling to make it functional */
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .app-titlebar {
+            display: flex;
+            justify-content: space-between;
+            background-color: #1a1a1a;
+            color: white;
+            padding: 8px 15px;
+            -webkit-app-region: drag;
+        }
+        .app-icon { margin-right: 10px; }
+        .app-title { display: flex; align-items: center; }
+        .app-controls { -webkit-app-region: no-drag; }
+        .app-control-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+        .app-control-btn:hover { background-color: rgba(255,255,255,0.1); }
+        .close-btn:hover { background-color: #e81123; }
+        .content { padding: 20px; }
+
+        /* Basic layout */
+        .main-container { display: flex; }
+        .accounts-sidebar {
+            width: 250px; 
+            background-color: #2c2c2c;
+            color: white;
+            padding: 10px;
+            height: calc(100vh - 50px);
+        }
+        .main-content { flex: 1; padding: 20px; }
+        .sidebar-header, .account-item {
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .account-item {
+            cursor: pointer;
+            background-color: #3e3e3e;
+            border-radius: 4px;
+        }
+        .account-item:hover { background-color: #4a4a4a; }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="light-theme">
+    <div class="app-titlebar">
+        <div class="app-drag-region">
+            <div class="app-title">
+                <i class="fab fa-steam app-icon"></i>
+                <h1>Steam Manager</h1>
+            </div>
+        </div>
+        <div class="app-controls">
+            <button class="app-control-btn minimize-btn" title="Minimize">
+                <i class="fas fa-minus"></i>
+            </button>
+            <button class="app-control-btn close-btn" title="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+    <div class="content">
+        <!-- Content will be inserted here -->
+    </div>
+    <script>
+        // Debug CSS loading
+        window.addEventListener('load', () => {
+            const style = document.querySelector('link[href="../static/css/style.css"]');
+            if (style && !style.sheet) {
+                console.error('CSS failed to load');
+            }
+        });
+    </script>
+    <script src="../static/js/renderer.js"></script>
+</body>
+</html> 

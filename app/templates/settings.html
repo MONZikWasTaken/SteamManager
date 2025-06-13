@@ -1,0 +1,70 @@
+
+
+
+<div class="settings-container">
+    <h2>Settings</h2>
+    
+    <div class="settings-section">
+        <h3>Appearance</h3>
+        <div class="setting-item">
+            <label>Theme</label>
+            <div class="theme-toggle">
+                <button class="theme-btn {% if session.get('theme') == 'light' %}active{% endif %}" 
+                        data-theme="light">
+                    <i class="fas fa-sun"></i>
+                    Light
+                </button>
+                <button class="theme-btn {% if session.get('theme') == 'blue' %}active{% endif %}"
+                        data-theme="blue">
+                    <i class="fas fa-moon"></i>
+                    Blue
+                </button>
+                <button class="theme-btn {% if session.get('theme') == 'dark' %}active{% endif %}"
+                        data-theme="dark">
+                    <i class="fas fa-moon"></i>
+                    Dark
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle theme buttons
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const theme = btn.dataset.theme;
+            
+            fetch('/set-theme', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ theme: theme })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Remove active class from all buttons
+                    document.querySelectorAll('.theme-btn').forEach(b => {
+                        b.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+                    
+                    // Update body class
+                    document.body.className = `${theme}-theme`;
+                }
+            })
+            .catch(error => {
+                console.error('Error setting theme:', error);
+            });
+        });
+    });
+});
+</script>
+ 

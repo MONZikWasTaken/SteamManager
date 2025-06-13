@@ -1,0 +1,43 @@
+{
+  "name": "steam-manager",
+  "version": "1.0.0",
+  "description": "Manage multiple Steam accounts",
+  "main": "app/static/js/main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "auto-launch": "^5.0.6",
+    "electron-squirrel-startup": "^1.0.1",
+    "electron-store": "^8.1.0",
+    "vdf": "^0.0.2",
+    "winreg": "^1.2.4"
+  },
+  "devDependencies": {
+    "electron": "^23.1.4",
+    "electron-builder": "^23.6.0"
+  },
+  "build": {
+    "appId": "com.steammanager.app",
+    "productName": "Steam Manager",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "app/static/img/icon.ico"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "app/static/img/icon.icns"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "app/static/img/icon.png"
+    }
+  }
+}
